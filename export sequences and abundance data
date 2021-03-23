@@ -1,0 +1,11 @@
+#transpose feature table so rep seqs file and table file can be tabulated together
+qiime feature-table transpose --i-table table.qza --o-transposed-feature-table transposed-table.qza
+Saved FeatureTable[Frequency] to: transposed-table.qza
+
+#optional: convert table to relative frequencies
+qiime feature-table relative-frequency --i-table transposed-table.qza --o-relative-frequency-table transposed-RF-table.qza
+Saved FeatureTable[RelativeFrequency] to: transposed-RF-table.qza
+
+#tabulate sequences file and table file and generate visualization; tsv file can be downloaded from this visualization
+qiime metadata tabulate --m-input-file rep-seqs.qza --m-input-file transposed-RF-table.qza --o-visualization seqs-and-rel-abundance.qzv
+Saved Visualization to: seqs-and-rel-abundance.qzv
